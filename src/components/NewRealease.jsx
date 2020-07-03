@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import axios from 'axios'
 import { Link } from "react-router-dom";
 import NumberFormat from 'react-number-format';
+import reactGa from 'react-ga'
 
 export default class NewRealease extends Component {
   constructor(props) {
     super(props)
     this.state = { products: [] }
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -16,10 +18,21 @@ export default class NewRealease extends Component {
       })
       .catch(err => {
         console.log("ERROR");
-
       })
+
+    reactGa.initialize('UA-171589455-1')
+    //to report page view
+    reactGa.pageview(window.location.pathname + window.location.search)
   }
 
+  handleClick() {
+    reactGa.event({
+      category: 'Promo Merdeka',
+      action: 'Displayed Promotional Widget',
+      label: 'Promosi',
+      nonInteraction: true
+    })
+  }
 
 
   render() {
@@ -45,7 +58,11 @@ export default class NewRealease extends Component {
                 )
               })
             }
-
+          </div>
+          <div className="text-center">
+            <Link to={'/mens'}>
+              <button onClick={this.handleClick()} className="px-4 py-2 rounded bg-black text-white">SHOW MORE</button>
+            </Link>
           </div>
         </div>
       </>

@@ -5,6 +5,7 @@ import { logoutUser } from '../actions/authActions'
 import Logo from "../assets/img/logo.png";
 import { Link } from "react-router-dom";
 import { FaUser, FaShoppingCart, FaTimes, FaSignOutAlt } from "react-icons/fa";
+import reactGa from 'react-ga';
 
 class Navbar extends Component {
   constructor(props) {
@@ -20,6 +21,10 @@ class Navbar extends Component {
     e.preventDefault();
     this.props.logoutUser();
     window.location.reload();
+  }
+  componentDidMount() {
+    reactGa.initialize('UA-171589455-1')
+    reactGa.pageview(window.location.pathname + window.location.search)
   }
 
   render() {

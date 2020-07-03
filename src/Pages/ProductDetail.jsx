@@ -57,7 +57,7 @@ class ProductDetail extends Component {
                             <div className="my-8">
                                 <h4>Share To:</h4>
                                 <div className="flex text-4xl my-2">
-                                    <a href="" className="hover:text-blue-800 mr-3"><FaFacebook /></a> <a href="" className="hover:text-blue-800 mr-3"><FaTwitter /></a> <a href="" className="hover:text-yellow-600 mr-3"><FaInstagram /></a> <a href="" className="hover:text-green-800 mr-3"><FaWhatsapp /></a>
+                                    <a href="https://facebook.com/ihsan.sayid" className="hover:text-blue-800 mr-3"><FaFacebook /></a> <a href="https://twitter.com/ihsan.sayidd" className="hover:text-blue-800 mr-3"><FaTwitter /></a> <a href="https://instagram.com/ihsan.sayidd" className="hover:text-yellow-600 mr-3"><FaInstagram /></a> <a href="https://web.whatsapp.com" className="hover:text-green-800 mr-3"><FaWhatsapp /></a>
                                 </div>
                             </div>
                         </div>
