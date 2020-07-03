@@ -10,7 +10,7 @@ export default class NewRealease extends Component {
   }
 
   componentDidMount() {
-    axios.get('/product/')
+    axios.get('https://ashoe-footwear.herokuapp.com/product/')
       .then(res => {
         this.setState({ products: res.data })
       })
