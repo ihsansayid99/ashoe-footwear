@@ -20,6 +20,8 @@ export default class NewRealease extends Component {
       })
   }
 
+
+
   render() {
     return (
       <>

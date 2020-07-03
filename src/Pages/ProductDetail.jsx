@@ -7,6 +7,7 @@ import Footer from '../components/Footer'
 
 
 
+
 class ProductDetail extends Component {
     constructor(props) {
         super();

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
@@ -6,6 +6,7 @@ import store from './store'
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken'
 import { setCurrentUser, logoutUser } from './actions/authActions'
+import reactGa from 'react-ga';
 
 import Navbar from './components/Navbar';
 import Home from './Pages/Home'
@@ -35,6 +36,12 @@ if (localStorage.jwtToken) {
 }
 
 function App() {
+  useEffect(() => {
+    reactGa.initialize('UA-171589455-1')
+
+    //to report page view
+    reactGa.pageview(window.location.pathname + window.location.search)
+  }, []);
   return (
 
     <Provider store={store}>
