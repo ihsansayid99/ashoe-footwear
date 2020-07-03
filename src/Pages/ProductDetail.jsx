@@ -28,10 +28,6 @@ class ProductDetail extends Component {
             })
     }
 
-    addToCart() {
-        alert('Data Berhasil Di Input, Tapi Boong')
-    }
-
     render() {
         const LinkWhatsapp = {
             link: `https://api.whatsapp.com/send?phone=6281220871887&text=Halo%20Kak.%0ASaya%20berminat%20Untuk%20Membeli%20produk%20anda.%0A${this.state.products.name}%0A${this.state.products.price}%0Ainfo%20selanjutnya%20ka...`
@@ -56,8 +52,8 @@ class ProductDetail extends Component {
                             <h4 className="font-bold text-2xl">{this.state.products.name}</h4>
                             <p>{this.state.products.color}</p>
                             <p className="font-bold my-2"><NumberFormat value={this.state.products.price} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
-                            <button className="px-10 py-2 border-black border-2 bg-black text-white rounded mr-2 hover:text-orange-700 duration-150 ease-in" onClick={LinkWhatsapp.link}>Buy</button>
-                            <button onClick={this.addToCart()} className="px-10 py-2 border-black border-2 rounded hover:bg-black hover:text-white transition duration-150 ease-in">Add To Cart</button>
+                            <a href={LinkWhatsapp.link}><button className="px-10 py-2 border-black border-2 bg-black text-white rounded mr-2 hover:text-orange-700 duration-150 ease-in">Buy</button></a>
+                            <button onClick={() => { alert("Data telah disimpan") }} className="px-10 py-2 border-black border-2 rounded hover:bg-black hover:text-white transition duration-150 ease-in">Add To Cart</button>
                             <div className="my-8">
                                 <h4>Share To:</h4>
                                 <div className="flex text-4xl my-2">
