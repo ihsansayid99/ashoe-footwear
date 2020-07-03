@@ -15,7 +15,7 @@ class ProductDetail extends Component {
         this.addToCart = this.addToCart.bind(this);
     }
     componentDidMount() {
-        Axios.get("/product/" + this.props.match.params.id)
+        Axios.get("https://ashoe-footwear.herokuapp.com/product/" + this.props.match.params.id)
             .then(res => {
                 this.setState({
                     products: res.data

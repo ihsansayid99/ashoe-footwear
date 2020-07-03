@@ -11,7 +11,7 @@ export default class Mens extends Component {
         }
     }
     componentDidMount() {
-        Axios.get('/product/')
+        Axios.get('https://ashoe-footwear.herokuapp.com/product/')
             .then(res => {
                 this.setState({
                     products: res.data
