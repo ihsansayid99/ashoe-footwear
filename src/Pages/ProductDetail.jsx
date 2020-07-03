@@ -5,6 +5,8 @@ import NumberFormat from 'react-number-format';
 import { FaFacebook, FaTwitter, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import Footer from '../components/Footer'
 
+
+
 class ProductDetail extends Component {
     constructor(props) {
         super();
@@ -27,17 +29,13 @@ class ProductDetail extends Component {
     }
 
     addToCart() {
-        let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : {};
-
-        let id = this.state.products._id;
-        cart[id] = (cart[id] ? cart[id] : 0);
-
-        let qty = cart[id] + parseInt(this.state.quantity);
-        cart[id] = qty
-        localStorage.setItem('cart', JSON.stringify(cart));
+        alert('Data Berhasil Di Input, Tapi Boong')
     }
 
     render() {
+        const LinkWhatsapp = {
+            link: `https://api.whatsapp.com/send?phone=6281220871887&text=Halo%20Kak.%0ASaya%20berminat%20Untuk%20Membeli%20produk%20anda.%0A${this.state.products.name}%0A${this.state.products.price}%0Ainfo%20selanjutnya%20ka...`
+        }
         return (
             <>
                 <div className="container">
@@ -58,7 +56,7 @@ class ProductDetail extends Component {
                             <h4 className="font-bold text-2xl">{this.state.products.name}</h4>
                             <p>{this.state.products.color}</p>
                             <p className="font-bold my-2"><NumberFormat value={this.state.products.price} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
-                            <button className="px-10 py-2 border-black border-2 bg-black text-white rounded mr-2 hover:text-orange-700 duration-150 ease-in">Buy</button>
+                            <button className="px-10 py-2 border-black border-2 bg-black text-white rounded mr-2 hover:text-orange-700 duration-150 ease-in" onClick={LinkWhatsapp.link}>Buy</button>
                             <button onClick={this.addToCart()} className="px-10 py-2 border-black border-2 rounded hover:bg-black hover:text-white transition duration-150 ease-in">Add To Cart</button>
                             <div className="my-8">
                                 <h4>Share To:</h4>
