@@ -40,7 +40,6 @@ if (localStorage.jwtToken) {
 function App() {
   useEffect(() => {
     reactGa.initialize('UA-171589455-1')
-
     //to report page view
     reactGa.pageview(window.location.pathname + window.location.search)
   }, []);

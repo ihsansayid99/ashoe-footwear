@@ -26,6 +26,8 @@ class ProductDetail extends Component {
             .catch(err => {
                 console.log(err);
             })
+        reactGa.initialize('UA-171589455-1')
+        reactGa.pageview(window.location.pathname + window.location.search)
     }
 
     render() {

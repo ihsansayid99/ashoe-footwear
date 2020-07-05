@@ -33,6 +33,8 @@ class Regist extends Component {
     if (this.props.auth.isAuthenticated) {
       this.props.history.push('/login')
     }
+    reactGa.initialize('UA-171589455-1')
+    reactGa.pageview(window.location.pathname + window.location.search)
   }
 
   _handleImageChange(e) {
