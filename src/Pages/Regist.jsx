@@ -7,6 +7,7 @@ import classnames from 'classnames'
 import Resizer from 'react-image-file-resizer';
 import { FaUpload } from "react-icons/fa";
 import Title from '../components/Title';
+import reactGa from 'react-ga';
 
 class Regist extends Component {
   constructor() {

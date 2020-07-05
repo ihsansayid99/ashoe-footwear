@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { loginUser } from '../actions/authActions';
 import Title from '../components/Title';
+import reactGa from 'react-ga'
 
 class Login extends Component {
   constructor() {

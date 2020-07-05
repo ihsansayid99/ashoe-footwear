@@ -5,7 +5,7 @@ import NumberFormat from 'react-number-format';
 import { FaFacebook, FaTwitter, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import Footer from '../components/Footer'
 import Title from '../components/Title';
-
+import reactGa from 'react-ga';
 
 
 class ProductDetail extends Component {
