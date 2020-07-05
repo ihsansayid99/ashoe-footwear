@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-
+import Title from '../components/Title';
 class Profile extends Component {
     render() {
         const { user } = this.props.auth;
         return (
             <>
+                <Title title="Profile" />
                 <div className="container">
                     <div className="w-full grid grid-cols-1 ">
                         <div className="mx-auto border-2 border-black rounded px-5 py-5">

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import NumberFormat from 'react-number-format';
 import { FaFacebook, FaTwitter, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import Footer from '../components/Footer'
-
+import Title from '../components/Title';
 
 
 
@@ -13,7 +13,7 @@ class ProductDetail extends Component {
         super();
         this.state = {
             products: [],
-            quantity: 1
+            quantity: 1,
         }
     }
     componentDidMount() {
@@ -34,12 +34,13 @@ class ProductDetail extends Component {
         }
         return (
             <>
+                <Title title={this.state.products.name} />
                 <div className="container">
                     <div className="border-2 border-black text-black p-3 rounded font-sans w-full">
                         <ol className="list-reset flex text-grey-dark">
                             <li><Link to="/" className="text-blue font-bold">Home</Link></li>
                             <li><span className="mx-2">/</span></li>
-                            <li><Link to="/mens/" className="text-blue font-bold">Mens</Link></li>
+                            <li><Link to={`/${this.state.products.type}/`} className="text-blue font-bold">{this.state.products.type}</Link></li>
                             <li><span className="mx-2">/</span></li>
                             <li>{this.state.products.name}</li>
                         </ol>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { loginUser } from '../actions/authActions';
+import Title from '../components/Title';
 
 class Login extends Component {
   constructor() {
@@ -53,6 +54,7 @@ class Login extends Component {
     const { errors } = this.state;
     return (
       <>
+        <Title title="Login" />
         <div className="w-auto max-w-xs mx-auto py-16">
           <div className="text-center">
             <h2 className="font-bold">Login</h2>

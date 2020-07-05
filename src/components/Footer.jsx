@@ -15,7 +15,7 @@ export default class Footer extends Component {
                 type="email"
                 className="mt-6 py-2 px-2 text-black w-64 lg:w-auto mr-3 rounded"
               />
-              <button className="bg-white text-black py-2 px-4 hover:bg-gray-700 hover:text-white transition duration-150">
+              <button className="bg-white mt-2 text-black py-2 px-4 hover:bg-gray-700 hover:text-white transition duration-150">
                 Subscribe
               </button>
             </div>
@@ -42,7 +42,7 @@ export default class Footer extends Component {
           </div>
           <div className="text-center text-white py-6">
             <img src={Logo} alt="ashoe logo white" className="mx-auto w-20" />
-            <h6 className="">Ashoe Footwear - &copy; 2020</h6>
+            <h6 className="">Sweater Weather - &copy; 2020</h6>
           </div>
         </footer>
       </>

@@ -11,7 +11,7 @@ export default class Mens extends Component {
         }
     }
     componentDidMount() {
-        Axios.get('https://ashoe-footwear.herokuapp.com/product/cardigan')
+        Axios.get('https://ashoe-footwear.herokuapp.com/product/cardigan-bershka')
             .then(res => {
                 this.setState({
                     products: res.data
@@ -25,13 +25,13 @@ export default class Mens extends Component {
     render() {
         return (
             <>
-                <Title title="Cardigan" />
+                <Title title="Bershka" />
                 <div className="container">
                     <div className="border-2 border-black text-black p-3 rounded font-sans w-full">
                         <ol className="list-reset flex text-grey-dark">
                             <li><Link to="/" className="text-blue font-bold">Home</Link></li>
                             <li><span className="mx-2">/</span></li>
-                            <li>Cardigan</li>
+                            <li>Cardigan Bershka</li>
                         </ol>
                     </div>
                     <div className="my-10">
@@ -41,7 +41,7 @@ export default class Mens extends Component {
                                 this.state.products.map(product => {
                                     return (
                                         <div key={product._id} className="text-center hover:bg-gray-400">
-                                            <Link to={"/cardigan/detail/" + product._id}>
+                                            <Link to={"/bershka/detail/" + product._id}>
                                                 <img src={product.image} alt={product.name} />
                                                 <h5 className="hover:text-orange-500">{product.name}</h5>
                                                 <p className="font-bold my-2"><NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>

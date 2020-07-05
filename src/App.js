@@ -14,6 +14,8 @@ import Login from './Pages/Login'
 import Regist from './Pages/Regist'
 import ProductDetail from './Pages/ProductDetail'
 import Mens from './components/Mens'
+import Bershka from './components/Bershka'
+import Sweater from './components/Sweater'
 import Profile from './Pages/Profile'
 import PrivateRoute from './components/PrivateRoute'
 
@@ -49,10 +51,26 @@ function App() {
         <Navbar />
         <Route exact path="/" component={Home} />
         <Route
-          path="/mens"
+          path="/cardigan"
           render={({ match: { url } }) => (
             <>
               <Route path={`${url}/`} component={Mens} exact />
+              <Route path={`${url}/detail/:id`} component={ProductDetail} />
+            </>
+          )}
+        />
+        <Route path="/bershka"
+          render={({ match: { url } }) => (
+            <>
+              <Route path={`${url}/`} component={Bershka} exact />
+              <Route path={`${url}/detail/:id`} component={ProductDetail} />
+            </>
+          )}
+        />
+        <Route path="/sweater"
+          render={({ match: { url } }) => (
+            <>
+              <Route path={`${url}/`} component={Sweater} exact />
               <Route path={`${url}/detail/:id`} component={ProductDetail} />
             </>
           )}

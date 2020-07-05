@@ -12,7 +12,7 @@ export default class NewRealease extends Component {
   }
 
   componentDidMount() {
-    axios.get('https://ashoe-footwear.herokuapp.com/product/')
+    axios.get('https://ashoe-footwear.herokuapp.com/product/new-arrival')
       .then(res => {
         this.setState({ products: res.data })
       })
@@ -42,13 +42,13 @@ export default class NewRealease extends Component {
           NEW RELEASE!
         </h1>
         <div className="container my-10 mx-auto">
-          <div className="grid grid-cols-3 lg:grid-cols-6 gap-3">
+          <div className="grid grid-cols-3 lg:grid-cols-5 gap-3">
             {this.state.products.length === 0 && <h1 className="text-center text-4xl">Loading...</h1>}
             {
               this.state.products.map(product => {
                 return (
                   <div key={product._id} className="text-center hover:bg-gray-400">
-                    <Link to={"/mens/detail/" + product._id}>
+                    <Link to={"/cardigan/detail/" + product._id}>
                       <img src={product.image} alt={product.name} />
                       <h5 className="hover:text-orange-500">{product.name}</h5>
                       <p className="font-bold my-2"><NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
@@ -59,9 +59,9 @@ export default class NewRealease extends Component {
               })
             }
           </div>
-          <div className="text-center">
-            <Link to={'/mens'}>
-              <button onClick={this.handleClick()} className="px-4 py-2 rounded bg-black text-white">SHOW MORE</button>
+          <div className="text-center my-4">
+            <Link to={'/cardigan'}>
+              <button onClick={this.handleClick()} className="px-4 py-2 rounded bg-black text-white border-2 hover:text-black hover:bg-white hover:border-black transition duration-150 ease-in">SHOW MORE</button>
             </Link>
           </div>
         </div>

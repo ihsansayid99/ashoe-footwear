@@ -66,17 +66,14 @@ class Navbar extends Component {
             }`}
         >
           <div className="text-sm font-semibold">
-            <Link to="/mens/" className="block mt-4 lg:inline-block lg:mt-0 hover:opacity-75 transition duration-150 ease-in  mr-5">
-              MENS
+            <Link to="/cardigan/" className="block mt-4 lg:inline-block lg:mt-0 hover:opacity-75 transition duration-150 ease-in  mr-5">
+              CARDIGAN
             </Link>
-            <Link to="/" className="block mt-4 lg:inline-block lg:mt-0 hover:opacity-75 transition duration-150 ease-in  mr-5">
-              WOMENS
+            <Link to="/bershka/" className="block mt-4 lg:inline-block lg:mt-0 hover:opacity-75 transition duration-150 ease-in  mr-5">
+              BERSHKA
             </Link>
-            <Link to="/" className="block mt-4 lg:inline-block lg:mt-0 hover:opacity-75 transition duration-150 ease-in mr-5">
-              SKATE
-            </Link>
-            <Link to="/" className="block mt-4 lg:inline-block lg:mt-0 hover:opacity-75 transition duration-150 ease-in">
-              SHOP
+            <Link to="/sweater/" className="block mt-4 lg:inline-block lg:mt-0 hover:opacity-75 transition duration-150 ease-in mr-5">
+              SWEATER
             </Link>
           </div>
         </div>

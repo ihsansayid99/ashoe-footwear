@@ -6,7 +6,7 @@ import { registerUser } from '../actions/authActions'
 import classnames from 'classnames'
 import Resizer from 'react-image-file-resizer';
 import { FaUpload } from "react-icons/fa";
-
+import Title from '../components/Title';
 
 class Regist extends Component {
   constructor() {
@@ -105,6 +105,7 @@ class Regist extends Component {
     const { errors } = this.state
     return (
       <>
+        <Title title="Register Page" />
         <div className="w-full max-w-screen-sm lg:max-w-3xl mx-auto">
           <div className="text-center">
             <h2 className="font-bold">Registration</h2>
