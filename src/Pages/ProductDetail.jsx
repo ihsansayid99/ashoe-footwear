@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import Axios from 'axios'
 import { Link } from 'react-router-dom'
 import NumberFormat from 'react-number-format';
@@ -10,7 +12,7 @@ import reactGa from 'react-ga';
 
 class ProductDetail extends Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             products: [],
             quantity: 1,
@@ -32,8 +34,9 @@ class ProductDetail extends Component {
 
     render() {
         const LinkWhatsapp = {
-            link: `https://api.whatsapp.com/send?phone=6281220871887&text=Halo%20Kak.%0ASaya%20berminat%20Untuk%20Membeli%20produk%20anda.%0A${this.state.products.name}%0A${this.state.products.price}%0Ainfo%20selanjutnya%20ka...`
+            link: `https://api.whatsapp.com/send?phone=6282129268807&text=Halo%20Kak.%0ASaya%20berminat%20Untuk%20Membeli%20produk%20anda.%0A${this.state.products.name}%0A${this.state.products.price}%0Ainfo%20selanjutnya%20ka...`
         }
+        const { isAuthenticated } = this.props.auth;
         return (
             <>
                 <Title title={this.state.products.name} />
@@ -55,7 +58,8 @@ class ProductDetail extends Component {
                             <h4 className="font-bold text-2xl">{this.state.products.name}</h4>
                             <p>{this.state.products.color}</p>
                             <p className="font-bold my-2"><NumberFormat value={this.state.products.price} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
-                            <a href={LinkWhatsapp.link}><button className="px-10 py-2 border-black border-2 bg-black text-white rounded mr-2 hover:text-orange-700 duration-150 ease-in">Buy</button></a>
+                            {isAuthenticated ? <a href={LinkWhatsapp.link}><button className="px-10 py-2 border-black border-2 bg-black text-white rounded mr-2 hover:text-orange-700 duration-150 ease-in">Buy</button></a> :
+                                <button onClick={() => { alert("Anda Harus Login"); this.props.history.push('/login') }} className="px-10 py-2 border-black border-2 bg-black text-white rounded mr-2 hover:text-orange-700 duration-150 ease-in">Buy</button>}
                             <button onClick={() => { alert("Data telah disimpan") }} className="px-10 py-2 border-black border-2 rounded hover:bg-black hover:text-white transition duration-150 ease-in">Add To Cart</button>
                             <div className="my-8">
                                 <h4>Share To:</h4>
@@ -72,4 +76,14 @@ class ProductDetail extends Component {
     }
 }
 
-export default ProductDetail;
+ProductDetail.propTypes = {
+    auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+
+export default connect(
+    mapStateToProps
+)(ProductDetail);
