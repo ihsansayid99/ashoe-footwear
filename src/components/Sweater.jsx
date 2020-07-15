@@ -45,7 +45,17 @@ export default class Mens extends Component {
                                             <Link to={"/sweater/detail/" + product._id}>
                                                 <img src={product.image} alt={product.name} />
                                                 <h5 className="hover:text-orange-500">{product.name}</h5>
-                                                <p className="font-bold my-2"><NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
+                                                {product.discount ?
+                                                    <div className="my-2">
+                                                        <strike>
+                                                            <p className="font-medium text-xs text-red-800"><NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
+                                                        </strike>
+                                                        <p className="font-bold"><NumberFormat value={(product.price) - (product.discount / 100 * product.price)} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
+                                                    </div>
+
+                                                    :
+                                                    <p className="font-bold my-2"><NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
+                                                }
                                                 <p className="text-xs">{product.color}</p>
                                             </Link>
                                         </div>

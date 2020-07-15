@@ -17,6 +17,7 @@ class ProductDetail extends Component {
             products: [],
             quantity: 1,
         }
+        this.addToCart = this.addToCart.bind(this);
     }
     componentDidMount() {
         Axios.get("https://ashoe-footwear.herokuapp.com/product/" + this.props.match.params.id)
@@ -31,6 +32,17 @@ class ProductDetail extends Component {
         reactGa.initialize('UA-171589455-1')
         reactGa.pageview(window.location.pathname + window.location.search)
     }
+
+
+    addToCart() {
+        let productString = localStorage.getItem('products')
+        let products = []
+        if (productString) {
+            products = JSON.parse(productString)
+        }
+        localStorage.setItem('products', JSON.stringify(products))
+    }
+
 
     render() {
         const LinkWhatsapp = {
@@ -57,10 +69,24 @@ class ProductDetail extends Component {
                         <div className="lg:w-full">
                             <h4 className="font-bold text-2xl">{this.state.products.name}</h4>
                             <p>{this.state.products.color}</p>
-                            <p className="font-bold my-2"><NumberFormat value={this.state.products.price} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
+                            {
+                                this.state.products.discount ?
+                                    <div className="my-2">
+                                        <strike>
+                                            <p className="font-medium text-xs text-red-800"><NumberFormat value={this.state.products.price} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
+                                        </strike>
+                                        <p className="font-bold text-2xl"><NumberFormat value={(this.state.products.price) - (this.state.products.discount / 100 * this.state.products.price)} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
+                                    </div>
+
+                                    :
+                                    <p className="font-bold text-2xl my-2"><NumberFormat value={this.state.products.price} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
+                            }
+
+
+
                             {isAuthenticated ? <a href={LinkWhatsapp.link}><button className="px-10 py-2 border-black border-2 bg-black text-white rounded mr-2 hover:text-orange-700 duration-150 ease-in">Buy</button></a> :
                                 <button onClick={() => { alert("Anda Harus Login"); this.props.history.push('/login') }} className="px-10 py-2 border-black border-2 bg-black text-white rounded mr-2 hover:text-orange-700 duration-150 ease-in">Buy</button>}
-                            <button onClick={() => { alert("Data telah disimpan") }} className="px-10 py-2 border-black border-2 rounded hover:bg-black hover:text-white transition duration-150 ease-in">Add To Cart</button>
+                            <button onClick={() => { alert("Data telah disimpan"); this.addToCart() }} className="px-10 py-2 border-black border-2 rounded hover:bg-black hover:text-white transition duration-150 ease-in">Add To Cart</button>
                             <div className="my-8">
                                 <h4>Share To:</h4>
                                 <div className="flex text-4xl my-2">

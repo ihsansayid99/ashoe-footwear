@@ -75,6 +75,9 @@ class Navbar extends Component {
             <Link to="/sweater/" className="block mt-4 lg:inline-block lg:mt-0 hover:opacity-75 transition duration-150 ease-in mr-5">
               SWEATER
             </Link>
+            <Link to="/long-outer/" className="block mt-4 lg:inline-block lg:mt-0 hover:opacity-75 transition duration-150 ease-in mr-5">
+              LONG OUTER
+            </Link>
           </div>
         </div>
         <div

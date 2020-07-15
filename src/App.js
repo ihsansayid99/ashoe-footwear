@@ -16,6 +16,7 @@ import ProductDetail from './Pages/ProductDetail'
 import Mens from './components/Mens'
 import Bershka from './components/Bershka'
 import Sweater from './components/Sweater'
+import LongOuter from './components/LongOuter'
 import Profile from './Pages/Profile'
 import PrivateRoute from './components/PrivateRoute'
 
@@ -70,6 +71,14 @@ function App() {
           render={({ match: { url } }) => (
             <>
               <Route path={`${url}/`} component={Sweater} exact />
+              <Route path={`${url}/detail/:id`} component={ProductDetail} />
+            </>
+          )}
+        />
+        <Route path="/long-outer"
+          render={({ match: { url } }) => (
+            <>
+              <Route path={`${url}/`} component={LongOuter} exact />
               <Route path={`${url}/detail/:id`} component={ProductDetail} />
             </>
           )}
