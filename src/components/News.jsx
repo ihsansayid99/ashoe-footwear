@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
 import Banner from '../assets/img/Bannerdisc.jpeg'
 
 export default class News extends Component {
@@ -13,9 +12,9 @@ export default class News extends Component {
                     </div>
                     <div className="grid grid-cols-1">
                         <div className="mx-auto w-auto">
-                            <Link to="/long-outer">
+                            <a href="https://bit.ly/PROMONEWNORMAL01">
                                 <img src={Banner} alt="Banner Disc" />
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 </div>
