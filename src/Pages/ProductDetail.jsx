@@ -16,6 +16,7 @@ class ProductDetail extends Component {
         this.state = {
             products: [],
             quantity: 1,
+            disc: ""
         }
         this.addToCart = this.addToCart.bind(this);
     }
@@ -45,10 +46,11 @@ class ProductDetail extends Component {
 
 
     render() {
-        const LinkWhatsapp = {
-            link: `https://api.whatsapp.com/send?phone=6282129268807&text=Halo%20Kak.%0ASaya%20berminat%20Untuk%20Membeli%20produk%20anda.%0A${this.state.products.name}%0A${this.state.products.price}%0Ainfo%20selanjutnya%20ka...`
-        }
         const { isAuthenticated } = this.props.auth;
+        const disc = (this.state.products.price) - (this.state.products.discount / 100 * this.state.products.price);
+        const LinkWhatsapp = {
+            link: `https://api.whatsapp.com/send?phone=6282129268807&text=Halo%20Kak.%0ASaya%20berminat%20Untuk%20Membeli%20produk%20anda.%0A${this.state.products.name}%0A${this.state.products.discount ? disc : this.state.products.price}%0Ainfo%20selanjutnya%20ka...`
+        }
         return (
             <>
                 <Title title={this.state.products.name} />
@@ -75,7 +77,7 @@ class ProductDetail extends Component {
                                         <strike>
                                             <p className="font-medium text-xs text-red-800"><NumberFormat value={this.state.products.price} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
                                         </strike>
-                                        <p className="font-bold text-2xl"><NumberFormat value={(this.state.products.price) - (this.state.products.discount / 100 * this.state.products.price)} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
+                                        <p className="font-bold text-2xl"><NumberFormat value={disc} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
                                     </div>
 
                                     :
