@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-
+import { Link } from 'react-router-dom';
+import Banner from '../assets/img/Bannerdisc.jpeg'
 
 export default class News extends Component {
     render() {
@@ -12,7 +13,9 @@ export default class News extends Component {
                     </div>
                     <div className="grid grid-cols-1">
                         <div className="mx-auto w-auto">
-                            <img src="https://troya.tv/UnderConstruction.png" alt="" />
+                            <Link to="/long-outer">
+                                <img src={Banner} alt="Banner Disc" />
+                            </Link>
                         </div>
                     </div>
                 </div>
