@@ -59,7 +59,7 @@ export default class NewRealease extends Component {
               this.state.products.map(product => {
                 return (
                   <div key={product._id} className="text-center hover:bg-gray-400">
-                    <Link to={`/${product.type}/detail/` + product._id}>
+                    <Link to={`/${product.type}/detail/` + product.slug}>
                       <img src={product.image} alt={product.name} />
                       <h5 className="hover:text-orange-500">{product.name}</h5>
                       {product.discount ?
