@@ -48,14 +48,16 @@ function App() {
 
     <Provider store={store}>
       <Router>
+
         <Navbar />
         <Route exact path="/" component={Home} />
+
         <Route
           path="/cardigan"
           render={({ match: { url } }) => (
             <>
               <Route path={`${url}/`} component={Mens} exact />
-              <Route path={`${url}/detail/:id`} component={ProductDetail} />
+              <Route path={`${url}/detail/:slug`} component={ProductDetail} />
             </>
           )}
         />
@@ -63,7 +65,7 @@ function App() {
           render={({ match: { url } }) => (
             <>
               <Route path={`${url}/`} component={Bershka} exact />
-              <Route path={`${url}/detail/:id`} component={ProductDetail} />
+              <Route path={`${url}/detail/:slug`} component={ProductDetail} />
             </>
           )}
         />
@@ -71,7 +73,7 @@ function App() {
           render={({ match: { url } }) => (
             <>
               <Route path={`${url}/`} component={Sweater} exact />
-              <Route path={`${url}/detail/:id`} component={ProductDetail} />
+              <Route path={`${url}/detail/:slug`} component={ProductDetail} />
             </>
           )}
         />
@@ -79,7 +81,7 @@ function App() {
           render={({ match: { url } }) => (
             <>
               <Route path={`${url}/`} component={LongOuter} exact />
-              <Route path={`${url}/detail/:id`} component={ProductDetail} />
+              <Route path={`${url}/detail/:slug`} component={ProductDetail} />
             </>
           )}
         />
