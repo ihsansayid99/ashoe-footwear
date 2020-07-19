@@ -8,7 +8,7 @@ class Profile extends Component {
         return (
             <>
                 <Title title="Profile" />
-                <div className="container">
+                <div>
                     <div className="w-full grid grid-cols-1 ">
                         <div className="mx-auto border-2 border-black rounded px-5 py-5">
                             <img src={user.avatar} className="w-64 rounded-b-full rounded-t-full" alt={user.fullName} />

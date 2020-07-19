@@ -29,6 +29,7 @@ class Navbar extends Component {
 
   render() {
     const { user, isAuthenticated } = this.props.auth;
+    const getDataCart = JSON.parse(localStorage.getItem('products'))
     return (
       <nav className="flex items-center justify-between flex-wrap bg-white text-black pt-4 px-8 lg:pt-6 pb-4 lg:px-16">
         <div className="flex items-center flex-shrink-0">
@@ -85,10 +86,10 @@ class Navbar extends Component {
             this.state.navbarOpen ? "block" : "hidden"
             }`}
         >
-          <Link to="/" className="block mt-5 lg:inline-block lg:mt-0 hover:opacity-75 transition duration-150 ease-in mr-5">
+          <Link to="/cart" className="block mt-5 lg:inline-block lg:mt-0 hover:opacity-75 transition duration-150 ease-in mr-5">
             <span className="flex font-normal">
               <FaShoppingCart className="mr-2 text-lg" />
-              Cart (0)
+              Cart ({getDataCart ? getDataCart.length : 0})
             </span>
           </Link>
           <div className="block mt-5 lg:inline-block lg:mt-0">
@@ -118,11 +119,11 @@ class Navbar extends Component {
 
 Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
 })
 
 export default connect(

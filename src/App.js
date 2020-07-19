@@ -10,6 +10,7 @@ import reactGa from 'react-ga';
 
 import Navbar from './components/Navbar';
 import Home from './Pages/Home'
+import Cart from './Pages/Cart'
 import Login from './Pages/Login'
 import Regist from './Pages/Regist'
 import ProductDetail from './Pages/ProductDetail'
@@ -90,6 +91,7 @@ function App() {
           <PrivateRoute exact path="/profile" component={Profile} />
         </Switch>
         <Route path="/registration" component={Regist} />
+        <Route path="/cart" component={Cart} />
       </Router>
     </Provider>
 

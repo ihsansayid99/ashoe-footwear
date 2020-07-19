@@ -25,6 +25,11 @@ export default class Mens extends Component {
 
             })
     }
+    discount(product) {
+        let discount = (product.price) - (product.discount / 100 * product.price)
+        let rounded = Math.round(discount / 1000) * 1000;
+        return rounded
+    }
     render() {
         return (
             <>
@@ -70,7 +75,7 @@ export default class Mens extends Component {
                                                         <strike>
                                                             <p className="font-medium text-xs text-red-800"><NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
                                                         </strike>
-                                                        <p className="font-bold"><NumberFormat value={(product.price) - (product.discount / 100 * product.price)} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
+                                                        <p className="font-bold"><NumberFormat value={this.discount(product)} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
                                                     </div>
 
                                                     :

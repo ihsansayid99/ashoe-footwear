@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-// import { addToCart } from '../actions/cartActions'
 import Axios from 'axios'
 import { Link } from 'react-router-dom'
 import NumberFormat from 'react-number-format';
@@ -11,15 +10,15 @@ import Title from '../components/Title';
 import reactGa from 'react-ga';
 import Skeleton from 'react-loading-skeleton'
 
-
 class ProductDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
             products: [],
-            quantity: 0,
-            disc: ""
+            quantity: 1,
         }
+        this.addToCart = this.addToCart.bind(this);
+        this.discount = this.discount.bind(this);
     }
     componentDidMount() {
         Axios.get("https://ashoe-footwear.herokuapp.com/product/" + this.props.match.params.slug)
@@ -33,13 +32,63 @@ class ProductDetail extends Component {
             })
         reactGa.initialize('UA-171589455-1')
         reactGa.pageview(window.location.pathname + window.location.search)
+
+    }
+
+    discount() {
+        let discount = (this.state.products.price) - (this.state.products.discount / 100 * this.state.products.price)
+        let rounded = Math.round(discount / 1000) * 1000;
+        return rounded
+    }
+
+    addToCart() {
+        // let products = []
+        // cart.forEach((item) => {
+        //     if (item._id === this.state.products._id) {
+        //         item.quantity += 1;
+        //         newItem = false;
+        //     }
+        // })
+        let newItem = true;
+        let cart = JSON.parse(localStorage.getItem('products'));
+        cart.forEach((item) => {
+            if (item._id === this.state.products._id) {
+                alert('Quantity anda ditambah !');
+                newItem = false;
+                item.quantity += 1;
+                localStorage.setItem('products', JSON.stringify(cart))
+            }
+        })
+        if (newItem) {
+            cart.push({ _id: this.state.products._id, image: this.state.products.image, name: this.state.products.name, price: this.discount(), quantity: this.state.quantity })
+            localStorage.setItem('products', JSON.stringify(cart))
+            alert('Added To Cart !')
+            window.location.reload();
+
+        }
+        // if (localStorage.getItem('products')) {
+        //     products = JSON.parse(localStorage.getItem('products'))
+        // }
+        // for (let i = 0; i < products.length; i++) {
+        //     console.log('index', i);
+        //     if (this.state.products._id === products[i]._id) {
+        //         alert('sama cok')
+        //         products[i].quantity += 1;
+        //         // localStorage.setItem('products', JSON.stringify(products))
+        //         break
+        //     }
+
+        // }
+        // products.push({ _id: this.state.products._id, image: this.state.products.image, name: this.state.products.name, price: this.state.products.price, quantity: this.state.quantity })
+        // localStorage.setItem('products', JSON.stringify(products))
+
     }
 
     render() {
         const { isAuthenticated } = this.props.auth;
-        const disc = (this.state.products.price) - (this.state.products.discount / 100 * this.state.products.price);
+        // const disc = (this.state.products.price) - (this.state.products.discount / 100 * this.state.products.price);
         const LinkWhatsapp = {
-            link: `https://api.whatsapp.com/send?phone=6282129268807&text=Halo%20Kak.%0ASaya%20berminat%20Untuk%20Membeli%20produk%20anda.%0A${this.state.products.name}%0A${this.state.products.discount ? disc : this.state.products.price}%0Ainfo%20selanjutnya%20ka...`
+            link: `https://api.whatsapp.com/send?phone=6282129268807&text=Halo%20Kak.%0ASaya%20berminat%20Untuk%20Membeli%20produk%20anda.%0A${this.state.products.name}%0A${this.state.products.discount ? this.discount() : this.state.products.price}%20${this.state.products.discount ? "( Harga Discount )" : "( Harga Normal )"}%0Ainfo%20selanjutnya%20ka...`
         }
         return (
             <>
@@ -84,7 +133,7 @@ class ProductDetail extends Component {
                                                 <strike>
                                                     <p className="font-medium text-xs text-red-800"><NumberFormat value={this.state.products.price} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
                                                 </strike>
-                                                <p className="font-bold text-2xl"><NumberFormat value={disc} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
+                                                <p className="font-bold text-2xl"><NumberFormat value={this.discount()} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
                                             </div>
 
                                             :
@@ -97,11 +146,11 @@ class ProductDetail extends Component {
                                         </a>
                                         :
                                         <button onClick={() => { alert("Anda Harus Login"); this.props.history.push('/login') }} className="px-10 py-2 border-black border-2 bg-black text-white rounded mr-2 hover:text-orange-700 duration-150 ease-in">Buy</button>}
-                                    <button onClick={() => { alert("Data telah disimpan") }} className="px-10 py-2 border-black border-2 rounded hover:bg-black hover:text-white transition duration-150 ease-in">Add To Cart</button>
+                                    <button onClick={() => { this.addToCart(); }} className="px-10 py-2 border-black border-2 rounded hover:bg-black hover:text-white transition duration-150 ease-in">Add To Cart</button>
                                     <div className="my-8">
                                         <h4>Share To:</h4>
                                         <div className="flex text-4xl my-2">
-                                            <a href="https://facebook.com/ihsan.sayid" className="hover:text-blue-800 mr-3"><FaFacebook /></a> <a href="https://twitter.com/ihsan.sayidd" className="hover:text-blue-800 mr-3"><FaTwitter /></a> <a href="https://instagram.com/ihsan.sayidd" className="hover:text-yellow-600 mr-3"><FaInstagram /></a> <a href="https://web.whatsapp.com" className="hover:text-green-800 mr-3"><FaWhatsapp /></a>
+                                            <a href="https://facebook.com/login" className="hover:text-blue-800 mr-3"><FaFacebook /></a> <a href="https://twitter.com/login" className="hover:text-blue-800 mr-3"><FaTwitter /></a> <a href="https://instagram.com/sweaterweather_olshop" className="hover:text-yellow-600 mr-3"><FaInstagram /></a> <a href="https://web.whatsapp.com" className="hover:text-green-800 mr-3"><FaWhatsapp /></a>
                                         </div>
                                     </div>
                                 </div>
@@ -120,7 +169,7 @@ ProductDetail.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    auth: state.auth,
+    auth: state.auth
 })
 
 export default connect(

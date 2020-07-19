@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import NumberFormat from 'react-number-format';
 import reactGa from 'react-ga';
 import Skeleton from 'react-loading-skeleton';
+import { FaPercent } from "react-icons/fa";
 
 export default class NewRealease extends Component {
   constructor(props) {
@@ -34,7 +35,11 @@ export default class NewRealease extends Component {
       nonInteraction: true
     })
   }
-
+  discount(product) {
+    let discount = (product.price) - (product.discount / 100 * product.price)
+    let rounded = Math.round(discount / 1000) * 1000;
+    return rounded
+  }
 
   render() {
     return (
@@ -60,14 +65,23 @@ export default class NewRealease extends Component {
                 return (
                   <div key={product._id} className="text-center hover:bg-gray-400">
                     <Link to={`/${product.type}/detail/` + product.slug}>
-                      <img src={product.image} alt={product.name} />
+                      {
+                        product.discount ?
+                          <>
+                            <FaPercent className="relative transform float-right z-10 bg-yellow-500 text-2xl" />
+                            <img src={product.image} alt={product.name} className="transform -translate-y-6 " />
+                          </>
+                          :
+                          <img src={product.image} alt={product.name} className="transform -translate-y-2 mb-4" />
+
+                      }
                       <h5 className="hover:text-orange-500">{product.name}</h5>
                       {product.discount ?
                         <div className="my-2">
                           <strike>
                             <p className="font-medium text-xs text-red-800"><NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
                           </strike>
-                          <p className="font-bold"><NumberFormat value={(product.price) - (product.discount / 100 * product.price)} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
+                          <p className="font-bold"><NumberFormat value={this.discount(product)} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></p>
                         </div>
 
                         :
