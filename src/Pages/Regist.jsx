@@ -190,7 +190,7 @@ class Regist extends Component {
                 <span className="hidden lg:inline-flex"><FaUpload className="mr-2" />Uploads Image</span> {this.state.file.length > 0 && <span className="font-bold"> | {this.state.file}</span>}
                 <span className="lg:hidden sm:block"><FaUpload /></span>
               </label> */}
-              <input type="file" name="userImage" className="py-2 px-2 cursor-pointer" onChange={this._handleImageChange} accept="image/*" />
+              <input type="file" name="userImage" className="py-2 px-2 cursor-pointer" accept="image/*" />
             </div>
             <div className="flex items-center justify-center">
               <button
