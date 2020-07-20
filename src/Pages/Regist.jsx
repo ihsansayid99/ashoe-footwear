@@ -19,7 +19,7 @@ class Regist extends Component {
       role: "USER",
       avatar: "",
       isWarning: false,
-      file: '',
+      file: 'https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png',
       fileInput: false
     };
     this.onChange = this.onChange.bind(this)
@@ -37,11 +37,10 @@ class Regist extends Component {
   }
 
   _handleImageChange(e) {
+    console.log(this.state.file);
     e.preventDefault()
 
-    this.setState({
-      file: e.target.files[0]
-    })
+
 
     // if (file) {
     //   this.setState({ fileInput: true })
