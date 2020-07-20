@@ -12,7 +12,7 @@ export default class News extends Component {
                     </div>
                     <div className="grid grid-cols-1">
                         <div className="mx-auto w-auto">
-                            <a href="https://bit.ly/PROMONEWNORMAL01">
+                            <a href="https://bit.ly/PROMOPSBB1">
                                 <img src={Banner} alt="Banner Disc" />
                             </a>
                         </div>
