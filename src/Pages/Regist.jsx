@@ -4,8 +4,6 @@ import { withRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { registerUser } from '../actions/authActions'
 import classnames from 'classnames'
-import Resizer from 'react-image-file-resizer';
-import { FaUpload } from "react-icons/fa";
 import Title from '../components/Title';
 import reactGa from 'react-ga';
 
@@ -41,29 +39,31 @@ class Regist extends Component {
   _handleImageChange(e) {
     e.preventDefault()
 
-    let file = e.target.files[0];
+    this.setState({
+      file: e.target.files[0]
+    })
 
-    if (file) {
-      this.setState({ fileInput: true })
-    }
-    if (!this.fileInput) {
-      Resizer.imageFileResizer(
-        file,
-        150,
-        150,
-        'PNG',
-        80,
-        0,
-        uri => {
-          console.log(uri);
-          this.setState({
-            avatar: uri,
-            file: file.name
-          })
-        },
-        'base64'
-      )
-    }
+    // if (file) {
+    //   this.setState({ fileInput: true })
+    // }
+    // if (!this.fileInput) {
+    //   Resizer.imageFileResizer(
+    //     file,
+    //     150,
+    //     150,
+    //     'PNG',
+    //     80,
+    //     0,
+    //     uri => {
+    //       console.log(uri);
+    //       this.setState({
+    //         avatar: uri,
+    //         file: file.name
+    //       })
+    //     },
+    //     'base64'
+    //   )
+    // }
 
     // reader.onloadend = () => {
     //     this.setState({
@@ -187,11 +187,11 @@ class Regist extends Component {
               <span className="text-red-600 text-sm py-2 px-2">{errors.password2}</span>
             </div>
             <div className="mb-6 flex items-center">
-              <label onChange={this._handleImageChange} className={`fileUpload flex-shrink-0 cursor-pointer ${this.state.isWarning ? "bg-red-900 text-white border-white" : "bg-white"} hover:bg-black  w-auto hover:text-white border-black text-sm border-2 text-black py-2 px-3 rounded`}>
+              {/* <label  className={`fileUpload flex-shrink-0 cursor-pointer ${this.state.isWarning ? "bg-red-900 text-white border-white" : "bg-white"} hover:bg-black  w-auto hover:text-white border-black text-sm border-2 text-black py-2 px-3 rounded`}>
                 <span className="hidden lg:inline-flex"><FaUpload className="mr-2" />Uploads Image</span> {this.state.file.length > 0 && <span className="font-bold"> | {this.state.file}</span>}
                 <span className="lg:hidden sm:block"><FaUpload /></span>
-                <input type="file" className="py-2 px-2 cursor-pointer hidden" accept="image/*" />
-              </label>
+              </label> */}
+              <input type="file" name="userImage" className="py-2 px-2 cursor-pointer" onChange={this._handleImageChange} accept="image/*" />
             </div>
             <div className="flex items-center justify-center">
               <button
