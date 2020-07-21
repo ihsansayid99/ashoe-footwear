@@ -62,7 +62,7 @@ export default class Mens extends Component {
                                                 {
                                                     product.discount ?
                                                         <>
-                                                            <FaPercent className="relative transform translate-x-48 z-10 bg-yellow-500 text-2xl" />
+                                                            <FaPercent className="relative transform float-right z-10 bg-yellow-500 text-2xl " />
                                                             <img src={product.image} alt={product.name} className="transform -translate-y-6" />
                                                         </>
                                                         :
