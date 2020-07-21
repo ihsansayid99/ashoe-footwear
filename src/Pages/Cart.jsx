@@ -67,8 +67,8 @@ export default class Cart extends Component {
                                 </table>
                                 :
                                 <div className="w-auto max-w-xl mx-auto py-8 lg:px-12 px-8 flex items-center my-16">
-                                    <FaCartArrowDown className="lg:text-3xl text-2xl mx-auto" />
-                                    <h1 className="lg:text-3xl text-2xl mx-auto">Keranjang Anda Kosong</h1>
+                                    <FaCartArrowDown className="lg:text-3xl text-xl mx-auto" />
+                                    <h1 className="lg:text-3xl text-xl mx-auto">Keranjang Anda Kosong</h1>
                                 </div>
                         }
                         {
