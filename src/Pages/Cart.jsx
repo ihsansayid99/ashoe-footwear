@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Title from '../components/Title';
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaCartArrowDown } from 'react-icons/fa';
 
 export default class Cart extends Component {
     constructor(props) {
@@ -10,6 +11,7 @@ export default class Cart extends Component {
         }
         this.cartItemDelete = this.cartItemDelete.bind(this);
     }
+
     cartItemDelete(_id) {
         let getLocalStorage = JSON.parse(localStorage.getItem('products'))
         let getStorages = getLocalStorage.map(getStorage => getStorage._id)
@@ -29,9 +31,7 @@ export default class Cart extends Component {
                     </div>
                     <div className="py-8">
                         {
-                            this.state.cart === null ?
-                                <h1 className="text-center">Keranjang Anda Kosong</h1>
-                                :
+                            undefined !== this.state.carts && this.state.carts.length ?
                                 <table className="table-auto mx-auto">
                                     <thead className="text-left">
                                         <tr>
@@ -65,10 +65,23 @@ export default class Cart extends Component {
                                         </tr>
                                     </tbody>
                                 </table>
+                                :
+                                <div className="w-auto max-w-xl mx-auto py-8 px-12 flex items-center my-16">
+                                    <FaCartArrowDown className="text-3xl mx-auto" />
+                                    <h1 className="text-3xl mx-auto">Keranjang Anda Kosong</h1>
+                                </div>
                         }
-                        <div className="text-center py-8">
-                            <button onClick={(e) => alert('Terimakasih... masih tahap progress')} className="w-64 py-3 mx-12 rounded bg-yellow-700 text-lg font-medium hover:bg-yellow-800 transition duration-150 ease-linear focus:outline-none">Check Out</button>
-                        </div>
+                        {
+                            undefined !== this.state.carts && this.state.carts.length ?
+                                <div className="text-center py-8">
+                                    <button onClick={(e) => alert('Terimakasih... masih tahap progress')} className="w-64 py-3 mx-12 text-white rounded bg-yellow-700 text-lg font-medium hover:bg-yellow-800 transition duration-150 ease-linear focus:outline-none">Check Out</button>
+                                </div> :
+                                <div className="text-center">
+                                    <Link to="/">
+                                        <button className="w-64 py-3 text-white mx-12 rounded bg-yellow-700 text-lg font-medium hover:bg-yellow-800 transition duration-150 ease-linear focus:outline-none">Belanja Sekarang</button>
+                                    </Link>
+                                </div>
+                        }
                     </div>
                 </div>
             </>
