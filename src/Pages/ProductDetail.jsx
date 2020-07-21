@@ -50,7 +50,7 @@ class ProductDetail extends Component {
         //     }
         // })
         let newItem = true;
-        let cart = JSON.parse(localStorage.getItem('products'));
+        let cart = JSON.parse(localStorage.getItem('products')) || [];
         cart.forEach((item) => {
             if (item._id === this.state.products._id) {
                 alert('Quantity anda ditambah !');
