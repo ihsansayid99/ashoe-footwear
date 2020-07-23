@@ -10,7 +10,11 @@ import {
 // Register User
 export const registerUser = (userData, history) => dispatch => {
     axios
-        .post("https://ashoe-footwear.herokuapp.com/api/users/register", userData)
+        .post("https://ashoe-footwear.herokuapp.com/api/users/register", userData, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        })
         .then(res => history.push("/login")) // re-direct to login on successful register
         .catch(err =>
             dispatch({

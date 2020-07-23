@@ -19,7 +19,7 @@ class Regist extends Component {
       role: "USER",
       avatar: "",
       isWarning: false,
-      profileImg: '',
+      profileImg: null,
       fileInput: false
     };
     this.onChange = this.onChange.bind(this)
@@ -82,28 +82,30 @@ class Regist extends Component {
       });
     }
   }
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
   onFileChange(e) {
     this.setState({ profileImg: e.target.files[0] })
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
   onSubmit(e) {
     e.preventDefault();
-    const newUser = {
-      fullName: this.state.fullName,
-      email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2,
-      role: this.state.role,
-      avatar: this.state.profileImg
-    };
-    if (this.state.avatar <= 0) {
-      this.setState({
-        isWarning: true
-      })
-    }
+    // const newUser = {
+    //   fullName: this.state.fullName,
+    //   email: this.state.email,
+    //   password: this.state.password,
+    //   password2: this.state.password2,
+    //   role: this.state.role,
+    //   profileImg: this.state.profileImg
+    // };
+    const newUser = new FormData();
+    newUser.append("fullName", this.state.fullName);
+    newUser.append("email", this.state.email);
+    newUser.append("password", this.state.password);
+    newUser.append("password2", this.state.password2);
+    newUser.append("role", this.state.role);
+    newUser.append("profileImg", this.state.profileImg);
     this.props.registerUser(newUser, this.props.history)
   }
 
