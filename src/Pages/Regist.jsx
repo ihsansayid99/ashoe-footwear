@@ -19,12 +19,13 @@ class Regist extends Component {
       role: "USER",
       avatar: "",
       isWarning: false,
-      file: 'https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png',
+      profileImg: '',
       fileInput: false
     };
     this.onChange = this.onChange.bind(this)
+    this.onFileChange = this.onFileChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
-    this._handleImageChange = this._handleImageChange.bind(this)
+    // this._handleImageChange = this._handleImageChange.bind(this)
   }
 
   componentDidMount() {
@@ -36,43 +37,43 @@ class Regist extends Component {
     reactGa.pageview(window.location.pathname + window.location.search)
   }
 
-  _handleImageChange(e) {
-    console.log(this.state.file);
-    e.preventDefault()
+  // _handleImageChange(e) {
+  //   console.log(this.state.file);
+  //   e.preventDefault()
 
 
 
-    // if (file) {
-    //   this.setState({ fileInput: true })
-    // }
-    // if (!this.fileInput) {
-    //   Resizer.imageFileResizer(
-    //     file,
-    //     150,
-    //     150,
-    //     'PNG',
-    //     80,
-    //     0,
-    //     uri => {
-    //       console.log(uri);
-    //       this.setState({
-    //         avatar: uri,
-    //         file: file.name
-    //       })
-    //     },
-    //     'base64'
-    //   )
-    // }
+  //   // if (file) {
+  //   //   this.setState({ fileInput: true })
+  //   // }
+  //   // if (!this.fileInput) {
+  //   //   Resizer.imageFileResizer(
+  //   //     file,
+  //   //     150,
+  //   //     150,
+  //   //     'PNG',
+  //   //     80,
+  //   //     0,
+  //   //     uri => {
+  //   //       console.log(uri);
+  //   //       this.setState({
+  //   //         avatar: uri,
+  //   //         file: file.name
+  //   //       })
+  //   //     },
+  //   //     'base64'
+  //   //   )
+  //   // }
 
-    // reader.onloadend = () => {
-    //     this.setState({
-    //         file: file.name,
-    //         avatar: reader.result
-    //     })
-    // }
+  //   // reader.onloadend = () => {
+  //   //     this.setState({
+  //   //         file: file.name,
+  //   //         avatar: reader.result
+  //   //     })
+  //   // }
 
-    // reader.readAsDataURL(file)
-  }
+  //   // reader.readAsDataURL(file)
+  // }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
@@ -80,6 +81,9 @@ class Regist extends Component {
         errors: nextProps.errors
       });
     }
+  }
+  onFileChange(e) {
+    this.setState({ profileImg: e.target.files[0] })
   }
 
   onChange(e) {
@@ -93,7 +97,7 @@ class Regist extends Component {
       password: this.state.password,
       password2: this.state.password2,
       role: this.state.role,
-      avatar: this.state.file
+      avatar: this.state.profileImg
     };
     if (this.state.avatar <= 0) {
       this.setState({
@@ -190,7 +194,7 @@ class Regist extends Component {
                 <span className="hidden lg:inline-flex"><FaUpload className="mr-2" />Uploads Image</span> {this.state.file.length > 0 && <span className="font-bold"> | {this.state.file}</span>}
                 <span className="lg:hidden sm:block"><FaUpload /></span>
               </label> */}
-              <input type="file" name="userImage" className="py-2 px-2 cursor-pointer" accept="image/*" />
+              <input onChange={this.onFileChange} type="file" name="profileImg" className="py-2 px-2 cursor-pointer" accept="image/*" />
             </div>
             <div className="flex items-center justify-center">
               <button
