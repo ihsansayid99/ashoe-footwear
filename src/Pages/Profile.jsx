@@ -5,14 +5,13 @@ import Title from '../components/Title';
 class Profile extends Component {
     render() {
         const { user } = this.props.auth;
-        const url = "https://ashoe-footwear.herokuapp.com/";
         return (
             <>
                 <Title title="Profile" />
                 <div>
                     <div className="w-full grid grid-cols-1 ">
                         <div className="mx-auto border-2 border-black rounded px-5 py-5">
-                            <div className="w-64 rounded-b-full h-64 bg-cover rounded-t-full border-2" style={{ backgroundImage: `url(${url + user.avatar})` }}>
+                            <div className="w-64 rounded-b-full h-64 bg-cover rounded-t-full border-2" style={{ backgroundImage: `url(${user.avatar})` }}>
                                 {/* <img src={url + user.avatar} className="bg-cover" alt={user.fullName} /> */}
                             </div>
                             <div className="text-center my-4">
