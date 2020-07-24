@@ -12,7 +12,9 @@ class Profile extends Component {
                 <div>
                     <div className="w-full grid grid-cols-1 ">
                         <div className="mx-auto border-2 border-black rounded px-5 py-5">
-                            <img src={url + user.avatar} className="w-64 rounded-b-full rounded-t-full" alt={user.fullName} />
+                            <div className="w-64 rounded-b-full h-64 bg-cover rounded-t-full border-2" style={{ backgroundImage: `url(${url + user.avatar})` }}>
+                                {/* <img src={url + user.avatar} className="bg-cover" alt={user.fullName} /> */}
+                            </div>
                             <div className="text-center my-4">
                                 <h1 className="text-2xl">{user.fullName}</h1>
                                 <h1 className="text-sm">{user.email}</h1>
