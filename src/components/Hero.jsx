@@ -23,16 +23,16 @@ export default class Hero extends Component {
             <div className="mb-8">
                 <Slider {...settings}>
                     <div className="w-full h-full">
-                        <img src={Banner1} width="1600" alt="Banner" />
+                        <img src={Banner1} alt="Banner" />
                     </div>
                     <div className="w-full">
-                        <img src={Banner3} width="1600" alt="Banner" />
+                        <img src={Banner3} alt="Banner" />
                     </div>
                     <div className="w-full">
-                        <img src={Banner2} width="1600" alt="Banner" />
+                        <img src={Banner2} alt="Banner" />
                     </div>
                     <div className="w-full">
-                        <img src={Banner4} width="1600" alt="Banner" />
+                        <img src={Banner4} alt="Banner" />
                     </div>
                 </Slider>
             </div>

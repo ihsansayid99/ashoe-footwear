@@ -75,7 +75,7 @@ export default class NewRealease extends Component {
                           <img src={product.image} alt={product.name} className="transform -translate-y-2 mb-4" />
 
                       }
-                      <h5 className="hover:text-orange-500">{product.name}</h5>
+                      <h6 className="hover:text-orange-500">{product.name}</h6>
                       {product.discount ?
                         <div className="my-2">
                           <strike>
