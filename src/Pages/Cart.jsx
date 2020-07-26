@@ -22,6 +22,16 @@ export default class Cart extends Component {
         window.location.reload();
     }
     render() {
+        const whatsapp = `https://api.whatsapp.com/send?phone=6282129268807&text=Halo%20Kak.%0ASaya%20berminat%20Untuk%20Membeli%20produk%20anda.`;
+        const LinkWhatsapp = this.state.carts.map((item, index) => {
+            const data = `%0A${item.name}%20Harga%20${item.price}%20x%20${item.quantity}%0A`
+            return (data)
+        })
+        const totalBelanja = this.state.carts.reduce((res, item) => {
+            return res + (item.price * item.quantity)
+        }, 0)
+        const penutup = `Dengan%20Total%20${totalBelanja}%0ATerimakasih`
+
         return (
             <>
                 <Title title="My Cart" />
@@ -74,7 +84,10 @@ export default class Cart extends Component {
                         {
                             undefined !== this.state.carts && this.state.carts.length ?
                                 <div className="text-center py-8">
-                                    <button onClick={(e) => alert('Terimakasih... masih tahap progress')} className="w-64 py-3 mx-12 text-white rounded bg-yellow-700 text-lg font-medium hover:bg-yellow-800 transition duration-150 ease-linear focus:outline-none">Check Out</button>
+
+                                    <a href={whatsapp + LinkWhatsapp + penutup}>
+                                        <button className="w-64 py-3 mx-12 text-white rounded bg-yellow-700 text-lg font-medium hover:bg-yellow-800 transition duration-150 ease-linear focus:outline-none">Check Out</button>
+                                    </a>
                                 </div> :
                                 <div className="text-center">
                                     <Link to="/">
