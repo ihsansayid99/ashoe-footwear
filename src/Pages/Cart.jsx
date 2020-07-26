@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import Title from '../components/Title';
 import { FaTrash, FaCartArrowDown } from 'react-icons/fa';
 
-export default class Cart extends Component {
+class Cart extends Component {
     constructor(props) {
         super();
         this.state = {
@@ -22,7 +24,8 @@ export default class Cart extends Component {
         window.location.reload();
     }
     render() {
-        const whatsapp = `https://api.whatsapp.com/send?phone=6282129268807&text=Halo%20Kak.%0ASaya%20berminat%20Untuk%20Membeli%20produk%20anda.`;
+        const { isAuthenticated, user } = this.props.auth;
+        const whatsapp = `https://api.whatsapp.com/send?phone=6282129268807&text=Halo%20Kak.%0ASaya%20${user.fullName}%0Aberminat%20Untuk%20Membeli%20produk%20anda.`;
         const LinkWhatsapp = this.state.carts.map((item, index) => {
             const data = `%0A${item.name}%20Harga%20${item.price}%20x%20${item.quantity}%0A`
             return (data)
@@ -31,7 +34,6 @@ export default class Cart extends Component {
             return res + (item.price * item.quantity)
         }, 0)
         const penutup = `Dengan%20Total%20${totalBelanja}%0ATerimakasih`
-
         return (
             <>
                 <Title title="My Cart" />
@@ -84,10 +86,11 @@ export default class Cart extends Component {
                         {
                             undefined !== this.state.carts && this.state.carts.length ?
                                 <div className="text-center py-8">
-
-                                    <a href={whatsapp + LinkWhatsapp + penutup}>
-                                        <button className="w-64 py-3 mx-12 text-white rounded bg-yellow-700 text-lg font-medium hover:bg-yellow-800 transition duration-150 ease-linear focus:outline-none">Check Out</button>
-                                    </a>
+                                    {
+                                        isAuthenticated ? <a href={whatsapp + LinkWhatsapp + penutup}>
+                                            <button className="w-64 py-3 mx-12 text-white rounded bg-yellow-700 text-lg font-medium hover:bg-yellow-800 transition duration-150 ease-linear focus:outline-none">Check Out</button>
+                                        </a> : <button onClick={() => { alert("Anda Harus Login"); this.props.history.push('/login') }} className="w-64 py-3 mx-12 text-white rounded bg-yellow-700 text-lg font-medium hover:bg-yellow-800 transition duration-150 ease-linear focus:outline-none">Check Out</button>
+                                    }
                                 </div> :
                                 <div className="text-center">
                                     <Link to="/">
@@ -101,3 +104,15 @@ export default class Cart extends Component {
         )
     }
 }
+
+Cart.propTypes = {
+    auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+
+export default connect(
+    mapStateToProps
+)(Cart);
